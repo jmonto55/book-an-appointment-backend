@@ -12,94 +12,92 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/reservations", type: :request do
-  
+RSpec.describe '/reservations', type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Reservation. As you add validations to Reservation, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    skip('Add a hash of attributes valid for your model')
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    skip('Add a hash of attributes invalid for your model')
+  end
 
-  describe "GET /index" do
-    it "renders a successful response" do
+  describe 'GET /index' do
+    it 'renders a successful response' do
       Reservation.create! valid_attributes
       get reservations_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
+  describe 'GET /show' do
+    it 'renders a successful response' do
       reservation = Reservation.create! valid_attributes
       get reservation_url(reservation)
       expect(response).to be_successful
     end
   end
 
-  describe "GET /new" do
-    it "renders a successful response" do
+  describe 'GET /new' do
+    it 'renders a successful response' do
       get new_reservation_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /edit" do
-    it "renders a successful response" do
+  describe 'GET /edit' do
+    it 'renders a successful response' do
       reservation = Reservation.create! valid_attributes
       get edit_reservation_url(reservation)
       expect(response).to be_successful
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Reservation" do
-        expect {
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      it 'creates a new Reservation' do
+        expect do
           post reservations_url, params: { reservation: valid_attributes }
-        }.to change(Reservation, :count).by(1)
+        end.to change(Reservation, :count).by(1)
       end
 
-      it "redirects to the created reservation" do
+      it 'redirects to the created reservation' do
         post reservations_url, params: { reservation: valid_attributes }
         expect(response).to redirect_to(reservation_url(Reservation.last))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new Reservation" do
-        expect {
+    context 'with invalid parameters' do
+      it 'does not create a new Reservation' do
+        expect do
           post reservations_url, params: { reservation: invalid_attributes }
-        }.to change(Reservation, :count).by(0)
+        end.to change(Reservation, :count).by(0)
       end
 
-    
+
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post reservations_url, params: { reservation: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
+      let(:new_attributes) do
+        skip('Add a hash of attributes valid for your model')
+      end
 
-      it "updates the requested reservation" do
+      it 'updates the requested reservation' do
         reservation = Reservation.create! valid_attributes
         patch reservation_url(reservation), params: { reservation: new_attributes }
         reservation.reload
-        skip("Add assertions for updated state")
+        skip('Add assertions for updated state')
       end
 
-      it "redirects to the reservation" do
+      it 'redirects to the reservation' do
         reservation = Reservation.create! valid_attributes
         patch reservation_url(reservation), params: { reservation: new_attributes }
         reservation.reload
@@ -107,26 +105,24 @@ RSpec.describe "/reservations", type: :request do
       end
     end
 
-    context "with invalid parameters" do
-    
+    context 'with invalid parameters' do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         reservation = Reservation.create! valid_attributes
         patch reservation_url(reservation), params: { reservation: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested reservation" do
+  describe 'DELETE /destroy' do
+    it 'destroys the requested reservation' do
       reservation = Reservation.create! valid_attributes
-      expect {
+      expect do
         delete reservation_url(reservation)
-      }.to change(Reservation, :count).by(-1)
+      end.to change(Reservation, :count).by(-1)
     end
 
-    it "redirects to the reservations list" do
+    it 'redirects to the reservations list' do
       reservation = Reservation.create! valid_attributes
       delete reservation_url(reservation)
       expect(response).to redirect_to(reservations_url)

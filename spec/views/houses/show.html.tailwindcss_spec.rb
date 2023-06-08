@@ -1,18 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe "houses/show", type: :view do
+RSpec.describe 'houses/show', type: :view do
   before(:each) do
     assign(:house, House.create!(
-      name: "Name",
-      address: "Address",
-      description: "MyText",
-      city: "City",
-      photo: "MyText",
-      night_price: 2
-    ))
+                     name: 'Name',
+                     address: 'Address',
+                     description: 'MyText',
+                     city: 'City',
+                     photo: 'MyText',
+                     night_price: 2
+                   ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/Address/)
